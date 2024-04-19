@@ -56,8 +56,10 @@ class MyPurchaseController extends Controller
 
         $user=User::find($user_id);
         $memberShip=Membership::find($memberShip_id);
+        Memberships_user::where('announcement_id',$announcement_id)->delete();
         $announcement=Announcement::where('id',$announcement_id)->where('user_id',$user->id)->first();
         $paymentExist=Payment::where('transaction_id',$transaction_id)->first();
+
 
 
 
@@ -82,6 +84,7 @@ class MyPurchaseController extends Controller
 
         $user=User::find($user_id);
         $memberShip=Membership::find($memberShip_id);
+        Memberships_user::where('announcement_id',$announcement_id)->delete();
         $announcement=Announcement::where('id',$announcement_id)->where('user_id',$user->id)->first();
         $paymentExist=Payment::where('transaction_ref',$transaction_ref)->first();
 
