@@ -31,7 +31,7 @@ class AuthServiceProvider extends ServiceProvider
         Passport::personalAccessClient(
             config('passport.personal_access_client.id')
         );
-	Passport::tokensExpireIn(now()->addMonths(6));
+	//Passport::tokensExpireIn(now()->addMonths(6));
     Passport::refreshTokensExpireIn(now()->addMonths(7));
     Passport::personalAccessTokensExpireIn(now()->addMonths(6));
         Passport::personalAccessClient(
