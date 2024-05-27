@@ -41,7 +41,7 @@ class BannerController extends Controller
             'path' => $fileName,
           ]);
          
-           
+        return 'in store';
          return new BannerResource($banner);
     }
 
