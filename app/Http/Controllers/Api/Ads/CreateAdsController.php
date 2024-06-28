@@ -62,8 +62,6 @@ class CreateAdsController extends Controller
         $ads->description = $request->description;
         $ads->expire=Carbon::now()->addDay(14);
 
-        
-
         if($ads->save()){
 
             //Check if video is uploaded and save it

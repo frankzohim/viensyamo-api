@@ -22,6 +22,7 @@ class ListenerCheckExpire
      */
     public function handle(object $event): void
     {
+        //dd('hello world');
         $today = Carbon::now();
 
         $expiredAnnoncement = Announcement::where('expire', '<', $today)->get();

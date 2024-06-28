@@ -2,6 +2,9 @@
 
 namespace App\Events;
 
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use App\Models\Announcement;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -19,7 +22,36 @@ class DeleteAdsEvent
      */
     public function __construct()
     {
-        dd('Construct');
+        $ads=Announcement::where('isSubscribe','=',0)
+        ->where('status', '=', 1)
+        ->get();
+       
+        foreach($ads as $ad){
+           
+            if(gettype($ad->expire)!='NULL' ){
+               
+                if(now()->diffInDays(Carbon::parse($ad->expire)) > 14){
+                    $ad->status=0;
+                    $ad->save();
+                }
+            }
+            else{
+                
+                if(now()->diffInDays(Carbon::parse($ad->created_at)) > 14){
+                    $ad->status=0;
+                    $ad->save();
+                    
+                }
+            }
+             
+           
+        }
+
+         DB::table('visits')->insert([
+            'ip' => request()->ip(),
+            'created_at' => Carbon::now(),
+        ]);
+       
     }
 
     /**

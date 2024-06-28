@@ -15,8 +15,7 @@ use App\Http\Controllers\CreateUserController;
 */
 
 Route::get('/', function () {
-    //dd("Hello");
-    event(new DeleteAdsEvent());
+    //event(new DeleteAdsEvent());
     return view('welcome');
 });
 

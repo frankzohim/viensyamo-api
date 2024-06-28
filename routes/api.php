@@ -85,6 +85,8 @@ use App\Http\Controllers\Api\Escort\EscortIsCompletedOrNotController;
 */
 
 
+Route::middleware(['checkAdsDelete'])->group(function () {
+
 
 Route::post('callback/ads',[CoolPayPaymentController::class,'callbackAds']);
 Route::post('callback/credits',[CoolPayPaymentController::class,'callbackCredits']);
@@ -258,4 +260,6 @@ Route::middleware(['auth:api','scopes:customer'])->prefix('v1')->group(function(
     Route::get('get/premium',[MemberShipController::class,'showPremium']);
     Route::post('init/cool-pay/plan',[CoolPayPaymentController::class,'payPlan']);
     Route::post('/subscribe/member',[MyPurchaseController::class,'subscribeUserWithCredit']);
+});
+
 });
