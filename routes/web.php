@@ -1,5 +1,5 @@
 <?php
-
+use App\Events\DeleteAdsEvent;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CreateUserController;
 
@@ -15,6 +15,8 @@ use App\Http\Controllers\CreateUserController;
 */
 
 Route::get('/', function () {
+    //dd("Hello");
+    event(new DeleteAdsEvent());
     return view('welcome');
 });
 

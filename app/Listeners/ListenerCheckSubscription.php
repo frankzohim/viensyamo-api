@@ -13,6 +13,7 @@ class ListenerCheckSubscription
     /**
      * Create the event listener.
      */
+    
     public function __construct()
     {
         //

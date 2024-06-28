@@ -13,6 +13,7 @@ use App\Events\EventCheckSubscription;
 use App\Events\EventCheckUpgradePlan;
 use App\Events\MakePayment;
 use App\Events\ProfileUserEvent;
+use App\Events\DeleteAdsEvent;
 use App\Listeners\AnnouncementVisitListener;
 use App\Listeners\DeleteAnnounceBanAccountListener;
 use App\Listeners\ListenerActivateAnnouncement;
@@ -24,6 +25,7 @@ use App\Listeners\ListenerCheckSubscription;
 use App\Listeners\ListenerCheckUpgradePlan;
 use App\Listeners\MakePayment as ListenersMakePayment;
 use App\Listeners\ProfileUserListener;
+use App\Listeners\DeleteAdsListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -36,12 +38,16 @@ class EventServiceProvider extends ServiceProvider
      *
      * @var array<class-string, array<int, class-string>>
      */
+
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        MakePayment::class => [
+         MakePayment::class => [
             ListenersMakePayment::class,
+        ],
+        DeleteAdsEvent::class => [
+            DeleteAdsListener::class,
         ],
         EventCheckSubscription::class=>[
             ListenerCheckSubscription::class,
