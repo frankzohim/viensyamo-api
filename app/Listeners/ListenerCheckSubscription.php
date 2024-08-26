@@ -32,13 +32,22 @@ class ListenerCheckSubscription
         // Mettre à jour l'abonnement expiré
         $subscription->update(['status' => 0]);
         $announcement=Announcement::find($subscription->announcement_id);
-        $announcement->status=1;
-        $announcement->isSubscribe=0;
-        $announcement->subscribe_id=0;
-        $announcement->expire=Carbon::now()->addDay(14);
-        $announcement->save();
+        if($announcement->isSubscribe == 0){
+            $announcement->status = 0;
+            $announcement->save();
+        }
+        else{
+             
+            $announcement->status=1;
+            $announcement->isSubscribe=0;
+            $announcement->subscribe_id=0;
+            //For test purpose let's set to 1 day instead of 14
+            $announcement->expire=Carbon::now()->addDay(1);
+            $announcement->save();
 
         // Envoyer un email ou une notification à l'utilisateur
+        }
+       
 
     }
 }

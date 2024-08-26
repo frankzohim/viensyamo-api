@@ -60,7 +60,7 @@ class CreateAdsController extends Controller
         $ads->gender = $request->gender;
         $ads->whatsapp = $phone;
         $ads->description = $request->description;
-        $ads->expire=Carbon::now()->addDay(14);
+        $ads->expire=Carbon::now()->addDay(1);
 
         if($ads->save()){
 

@@ -49,6 +49,7 @@ class AnnouncementController extends Controller
         return $ads->all();
     }
 
+    
     public function recents()
     {
         event(new EventCheckSubscription());

@@ -180,6 +180,7 @@ Route::get('/adstown/{id}', [AnnouncementController::class,'getAdsByTown']);
 Route::get('/adsquarter/{id}', [AnnouncementController::class,'getAdsByQuarter']);
 Route::get('/adscategory/{categoryId}', [AnnouncementController::class,'getAdsByCategory']);
 
+
 Route::delete('/ads/{id}', [DeleteAdsController::class, 'delete']);
 Route::delete('users/{id}',[DeleteUserController::class,'delete']);
 Route::post('/ads/update', [CreateAdsController::class, 'update']);

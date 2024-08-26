@@ -47,6 +47,7 @@ class AnnouncementRepository implements AnnouncementInterface
     public function getAnnouncementsByTown()
     {
        $data = DB::table('announcements')
+         ->where('status', '=', 1)
          ->leftjoin('towns', 'towns.id', '=','announcements.town_id')
                             ->select('town_id','town_name', DB::raw('count(*) as totalAnnounces'))
                             ->groupBy('town_name')
@@ -54,7 +55,7 @@ class AnnouncementRepository implements AnnouncementInterface
                             ->get();
          //loop over the collection and fake the number of announcement by town
         $data->map(function($element){
-            $element->totalAnnounces = $element->totalAnnounces*5 +  ceil($element->totalAnnounces*12/11);
+            $element->totalAnnounces = $element->totalAnnounces*3 +  ceil($element->totalAnnounces*12/11);
             return $element;
 
         });
